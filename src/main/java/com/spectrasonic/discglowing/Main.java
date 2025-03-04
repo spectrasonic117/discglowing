@@ -1,13 +1,19 @@
 package com.spectrasonic.discglowing;
 
+import co.aikar.commands.PaperCommandManager;
+import com.spectrasonic.discglowing.Commands.DiscGlowingCommand;
+import com.spectrasonic.discglowing.Listeners.DiscListener;
 import com.spectrasonic.discglowing.Utils.MessageUtils;
 import org.bukkit.plugin.java.JavaPlugin;
+import lombok.Getter;
 
+@Getter
 public final class Main extends JavaPlugin {
+    
+    private boolean featureEnabled = true;
 
     @Override
     public void onEnable() {
-
         registerCommands();
         registerEvents();
         MessageUtils.sendStartupMessage(this);
@@ -20,10 +26,15 @@ public final class Main extends JavaPlugin {
     }
 
     public void registerCommands() {
-        // Set Commands Here
+        PaperCommandManager commandManager = new PaperCommandManager(this);
+        commandManager.registerCommand(new DiscGlowingCommand());
     }
 
     public void registerEvents() {
-        // Set Events Here
+        getServer().getPluginManager().registerEvents(new DiscListener(this), this);
+    }
+
+    public void setFeatureEnabled(boolean state) {
+        this.featureEnabled = state;
     }
 }

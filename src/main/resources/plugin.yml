@@ -1,5 +1,12 @@
 name: discglowing
-version: '${version}'
+version: "${version}"
 main: com.spectrasonic.discglowing.Main
-api-version: '1.21.1'
+api-version: "1.21.1"
 authors: [Spectrasonic]
+commands:
+    discglowing:
+        aliases: [dg]
+        permission: discglowing.admin
+permissions:
+    discglowing.admin:
+        default: op

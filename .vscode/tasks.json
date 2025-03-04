@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "gradle",
+            "id": "/Users/spectra/Desktop/discglowingbuilddiscglowing",
+            "script": "build",
+            "description": "Assembles and tests this project.",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "project": "discglowing",
+            "buildFile": "/Users/spectra/Desktop/discglowing/build.gradle",
+            "rootProject": "discglowing",
+            "projectFolder": "/Users/spectra/Desktop/discglowing",
+            "workspaceFolder": "/Users/spectra/Desktop/discglowing",
+            "args": "",
+            "javaDebug": false,
+            "problemMatcher": [
+                "$gradle"
+            ],
+            "label": "gradle: build"
+        }
+    ]
+}
