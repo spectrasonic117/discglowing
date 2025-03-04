@@ -1,36 +1,35 @@
 package com.spectrasonic.discglowing.Commands;
 
-import com.spectrasonic.discglowing.Main;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.Bukkit;
+
+import com.spectrasonic.discglowing.Managers.GlowingManager;
 import com.spectrasonic.discglowing.Utils.MessageUtils;
+
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.CommandPermission;
-import co.aikar.commands.annotation.Dependency;
-import co.aikar.commands.annotation.Description;
 import co.aikar.commands.annotation.Subcommand;
-import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffectType;
+import lombok.RequiredArgsConstructor;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 
+@RequiredArgsConstructor
 @CommandAlias("discglowing|dg")
-@CommandPermission("discglowing.admin")
 public class DiscGlowingCommand extends BaseCommand {
 
-    @Dependency private Main plugin;
+    private final GlowingManager glowingManager;
+    private final MiniMessage miniMessage;
 
     @Subcommand("toggle")
-    @Description("Activa/desactiva el efecto glowing")
-    public void onToggle(Player player, boolean state) {
-        plugin.setFeatureEnabled(state);
-        
-        String message = state ? 
-            "<green>Efecto glowing activado" : 
-            "<red>Efecto glowing desactivado";
-        
-        MessageUtils.sendMessage(player, message);
-        
-        if (!state) {
-            plugin.getServer().getOnlinePlayers().forEach(p -> 
-                p.removePotionEffect(PotionEffectType.GLOWING));
-        }
+    public void onToggle(CommandSender sender) {
+        glowingManager.toggle();
+        String state = glowingManager.isEnabled() ? "<green>activado" : "<red>desactivado";
+        sender.sendMessage(miniMessage.deserialize("<yellow>La funcionalidad DiscGlowing ahora está " + state + "."));
+    }
+
+    @Subcommand("clear")
+    public void onClear(CommandSender sender) {
+        int itemsRemoved = glowingManager.clearAllGlowingAndItems();
+        sender.sendMessage(miniMessage.deserialize("<green>Se han eliminado todos los efectos glowing y " + itemsRemoved + " discos de música."));
     }
 }
