@@ -1,11 +1,8 @@
 package com.spectrasonic.discglowing.Commands;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.Bukkit;
 
 import com.spectrasonic.discglowing.Managers.GlowingManager;
-import com.spectrasonic.discglowing.Utils.MessageUtils;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;

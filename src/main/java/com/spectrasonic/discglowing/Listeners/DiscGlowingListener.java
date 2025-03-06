@@ -1,7 +1,5 @@
 package com.spectrasonic.discglowing.Listeners;
 
-import java.util.Set;
-
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
+import java.util.Set;
 
 import com.spectrasonic.discglowing.Managers.GlowingManager;
 
